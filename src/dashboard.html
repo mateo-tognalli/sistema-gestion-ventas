@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Suprimir ReferenceError interno de Electron al arrastrar la ventana -->
+    <script>window.dragEvent = undefined;</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Luisina Vestidos</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/modules.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="imagenes/logoLuisinaVestidos.png" alt="Logo" class="sidebar-logo">
+                <h2>Luisina Vestidos</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item" data-module="inicio">
+                        <span class="icon">🏠</span>
+                        <span class="text">Inicio</span>
+                    </li>
+                    
+                    <li class="nav-item" data-module="usuarios" id="usuariosNav">
+                        <span class="icon">👥</span>
+                        <span class="text">Usuarios</span>
+                    </li>
+                    
+                    <li class="nav-item" data-module="clientes">
+                        <span class="icon">👤</span>
+                        <span class="text">Clientes</span>
+                    </li>
+                    
+                    <li class="nav-item" data-module="vestidos">
+                        <span class="icon">👗</span>
+                        <span class="text">Vestidos</span>
+                    </li>
+                    
+                    <li class="nav-item" data-module="operaciones">
+                        <span class="icon">💰</span>
+                        <span class="text">Operaciones</span>
+                    </li>
+                    
+                    <li class="nav-item" data-module="reportes" id="reportesNav">
+                        <span class="icon">📊</span>
+                        <span class="text">Reportes</span>
+                    </li>
+                    
+                    <li class="nav-item" data-module="historial" id="historialNav">
+                        <span class="icon">📜</span>
+                        <span class="text">Historial de Ventas</span>
+                    </li>
+                </ul>
+            </nav>
+            <script>
+                (function() {
+                    // 1) Ocultar ítems restringidos antes del primer paint (evita flash para Empleados)
+                    try {
+                        var sd = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
+                        if (sd && JSON.parse(sd).rol === 'Empleado') {
+                            ['usuariosNav','reportesNav','historialNav'].forEach(function(id) {
+                                var el = document.getElementById(id);
+                                if (el) el.style.display = 'none';
+                            });
+                        }
+                    } catch(e) {}
+                    // 2) Aplicar nav activo (evita flash al F5)
+                    var m = localStorage.getItem('lastModule') || 'inicio';
+                    var item = document.querySelector('[data-module="' + m + '"]');
+                    if (item) item.classList.add('active');
+                })();
+            </script>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <p class="user-name" id="userName">Usuario</p>
+                        <p class="user-role" id="userRole">Admin</p>
+                    </div>
+                </div>
+                <button class="btn-logout" id="logoutBtn">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1 id="pageTitle">Inicio</h1>
+                <div class="header-actions">
+                    <div class="current-time" id="currentTime"></div>
+                </div>
+            </header>
+
+            <div class="content-body" id="contentBody">
+                <!-- El contenido se cargará dinámicamente aquí -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../node_modules/chart.js/dist/chart.umd.js"></script>
+    <script src="js/utils/db-helper.js"></script>
+    <script src="js/utils/pdf-generator.js"></script>
+    <script src="js/utils/email-service.js"></script>
+    <script src="js/controllers/usuarios-controller.js"></script>
+    <script src="js/controllers/clientes-controller.js"></script>
+    <script src="js/controllers/vestidos-controller.js"></script>
+    <script src="js/controllers/ventas-controller.js"></script>
+    <script src="js/controllers/reportes-controller.js"></script>
+    <script src="js/views/inicio-view.js"></script>
+    <script src="js/views/usuarios-view.js"></script>
+    <script src="js/views/clientes-view.js"></script>
+    <script src="js/views/vestidos-view.js"></script>
+    <script src="js/views/operaciones-view.js"></script>
+    <script src="js/views/reportes-view.js"></script>
+    <script src="js/views/historial-view.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

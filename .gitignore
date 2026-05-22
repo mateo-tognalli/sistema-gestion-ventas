@@ -1,0 +1,41 @@
+# Dependencias
+node_modules/
+# package-lock.json
+
+# Base de datos local (comentar si quieres incluir en git)
+*.db
+*.db-journal
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Electron
+dist/
+build/
+out/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Configuración local
+.env
+.env.local
+
+# Archivos temporales
+*.tmp
+*.temp
+~*
+
+# PDFs generados (comentar si quieres conservarlos)
+# *.pdf
