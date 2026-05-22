@@ -9,7 +9,6 @@ Sistema profesional de gestión de ventas de vestidos desarrollado con Electron,
 - ✅ Roles: Administrador y Empleado
 - ✅ Sistema de permisos
 - ✅ Gestión de estados (activo/inactivo)
-- ✅ Papelera con restauración
 - ✅ Historial de auditoría completo
 - ✅ Recuperación de contraseña por correo
 
@@ -59,7 +58,6 @@ Sistema de base de datos **MySQL** normalizado a la **Tercera Forma Normal (3FN)
 - ✅ Validaciones de integridad de datos
 - ✅ Relaciones entre entidades
 - ✅ Historial de auditoría para usuarios, clientes y vestidos
-- ✅ Sistema de papelera para usuarios
 
 ### Entidades Principales:
 - `usuarios` - Gestión de usuarios del sistema
@@ -72,7 +70,6 @@ Sistema de base de datos **MySQL** normalizado a la **Tercera Forma Normal (3FN)
 - `historial_usuarios` - Auditoría de usuarios
 - `historial_clientes` - Auditoría de clientes
 - `historial_vestidos` - Auditoría de vestidos
-- `papelera_usuarios` - Usuarios eliminados con posibilidad de restaurar
 
 ## 🏗️ Arquitectura
 
@@ -223,9 +220,9 @@ El ejecutable se generará en la carpeta `dist/` con el nombre `LuisinaVestidos-
 ## 📊 Funcionalidades Técnicas
 
 ### CRUD Implementado
-- **Usuarios**: Crear, Leer, Actualizar, Eliminar (con papelera)
-- **Clientes**: Crear, Leer, Actualizar, Eliminar
-- **Vestidos**: Crear, Leer, Actualizar, Eliminar
+- **Usuarios**: Crear, Leer, Actualizar
+- **Clientes**: Crear, Leer, Actualizar
+- **Vestidos**: Crear, Leer, Actualizar
 - **Ventas**: Crear, Leer (con detalles completos)
 
 ### Validaciones
